@@ -72,7 +72,12 @@ let handleMessageFromPeer = async (message, MemberId) => {
 
     if(message.type === 'candidate'){
         if(peerConnection){
-            peerConnection.addIceCandidate(message.candidate)
+            try { // statements to try
+                peerConnection.addIceCandidate(message.candidate)
+            }
+            catch (e) {
+                console.error(e);
+            }
         }
     }
 
